@@ -48,3 +48,27 @@ void output(const int x[], const int a[N][N])
 		fprintf(fp, "%5d", x[i]);
 	fclose(fp);
 }
+
+
+int* masx(int(*a)[N], int* x, void (*pfunc)(int[N][N]))
+{
+	int min, max, i, j, avg;
+	pfunc(a);
+	for (i = 0; i < N; i++)
+	{
+		max = a[i][0];
+		min = a[i][0];
+		for (j = 0; j < N; j++)
+		{
+			if (max < a[i][j])
+				max = a[i][j];
+			if (min > a[i][j])
+				min = a[i][j];
+			avg = (max + min) / 2;
+		}
+		x[i] = avg;
+
+	}
+	return x;
+
+}
