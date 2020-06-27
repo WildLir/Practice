@@ -72,3 +72,50 @@ int* masx(int(*a)[N], int* x, void (*pfunc)(int[N][N]))
 	return x;
 
 }
+int summa(int x[N], int i, int& sum, int min)
+{
+	if (i < N)
+	{
+		if (x[i] != min)
+		{
+			sum = sum + x[i];
+			return summa(x, i + 1, sum, min);
+		}
+	}
+	return sum;
+}
+
+int masy(int x[N])
+{
+	int i, sum, min;
+	sum = 0;
+	min = 0;
+	for (i = 0; i < N; i++)
+		if (min > x[i])
+			min = x[i];
+	i = 0;
+	summa(x, i, sum, min);
+	return sum;
+}
+
+
+int main()
+{
+	setlocale(LC_CTYPE, "");
+	int a[N][N], c, x[N];
+	void (*pfunc)(int[N][N]);
+	pfunc = &input_matr;
+	do
+	{
+		printf("Ввод матрицы:\n1 - с клавиатуры\n2- из файла\n");
+		scanf("%d", &c);
+	} while (c != 1 && c != 2);
+	switch (c)
+	{
+	case 1: pfunc = &input_matr;
+		break;
+	case 2: pfunc = &input_matr_file;
+	}
+	output(masx(a, x, pfunc), a);
+	printf("\nY = %d", masy(x));
+}
