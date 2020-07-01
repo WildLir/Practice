@@ -54,19 +54,20 @@ int* masx(int(*a)[N], int* x, void (*pfunc)(int[N][N]))
 {
 	int min, max, i, j, avg;
 	pfunc(a);
-	for (i = 0; i < N; i++)
+	for (j = 0; j < N; j++)
 	{
-		max = a[i][0];
-		min = a[i][0];
-		for (j = 0; j < N; j++)
+		max = a[0][j];
+		min = a[0][j];
+		for (i = 0; i < N; i++)
 		{
 			if (max < a[i][j])
 				max = a[i][j];
 			if (min > a[i][j])
 				min = a[i][j];
-			avg = (max + min) / 2;
+
 		}
-		x[i] = avg;
+		avg = (max + min) / 2;
+		x[j] = avg;
 
 	}
 	return x;
