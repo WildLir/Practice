@@ -90,7 +90,7 @@ int masy(int x[N])
 {
 	int i, sum, min;
 	sum = 0;
-	min = 0;
+	min = x[0];
 	for (i = 0; i < N; i++)
 		if (min > x[i])
 			min = x[i];
